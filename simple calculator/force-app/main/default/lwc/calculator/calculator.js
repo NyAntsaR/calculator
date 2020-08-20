@@ -5,6 +5,9 @@ export default class Calculator extends LightningElement {
     firstNumber;
     secondNumber;
 
+    resultHistory = [];
+    displayResultHistory = false;
+
     numberChangeHandler(event) {
         const inputBoxName = event.target.name;
 
@@ -15,24 +18,44 @@ export default class Calculator extends LightningElement {
         }
     }
 
-    clickHandler(event) {
-        // convert a string to number
-        const firstNum = parseInt(this.firstNumber);
-        const secondNum = parseInt(this.secondNumber);
+    addHandler(){
+        const firstN = parseInt(this.firstNumber);
+        const secondN = parseInt(this.secondNumber);
 
-        let inp = this.template.querySelectorAll("lightning-button");
+        //this.currentResult = 'Result of '+firstN+'+'+secondN+' is '+(firstN+secondN);
+        this.currentResult = `Result of ${firstN}+${secondN} is ${firstN+secondN}`;
+        this.resultHistory.push(this.currentResult);
+    }
 
-        inp.forEach(function(element) {
-            if (element.label === "Add") {
-                this.currentResult = `Result of ${firstNum} + ${secondNum} is : ${firstNum + secondNum}`;
-            } else if (element.label === "Substract") {
-                this.currentResult = `Result of  ${firstNum} - ${secondNum} is : ${firstNum - secondNum}`;
-            } else if (element.label === "Multiply") {
-                this.currentResult = `Result of  ${firstNum} * ${secondNum} is : ${firstNum * secondNum}`;
-            } else if (element.label === "Divide") {
-                this.currentResult = `Result of  ${firstNum} / ${secondNum} is : ${firstNum / secondNum}`;
-            }
-        }, this);
+    subHandler(){
+        const firstN = parseInt(this.firstNumber);
+        const secondN = parseInt(this.secondNumber);
+
+        //this.currentResult = 'Result of '+firstN+'+'+secondN+' is '+(firstN+secondN);
+        this.currentResult = `Result of ${firstN}-${secondN} is ${firstN-secondN}`;
+        this.resultHistory.push(this.currentResult);
+    }
+
+    multiplyHandler(){
+        const firstN = parseInt(this.firstNumber);
+        const secondN = parseInt(this.secondNumber);
+
+        //this.currentResult = 'Result of '+firstN+'+'+secondN+' is '+(firstN+secondN);
+        this.currentResult = `Result of ${firstN}x${secondN} is ${firstN*secondN}`;
+        this.resultHistory.push(this.currentResult);
+    }
+
+    divisionHandler(){
+        const firstN = parseInt(this.firstNumber);
+        const secondN = parseInt(this.secondNumber);
+
+        //this.currentResult = 'Result of '+firstN+'+'+secondN+' is '+(firstN+secondN);
+        this.currentResult = `Result of ${firstN}/${secondN} is ${firstN/secondN}`;
+        this.resultHistory.push(this.currentResult);
+    }
+
+    showResultHistory(event) {
+        this.displayResultHistory = event.target.checked;
     }
         
 }
