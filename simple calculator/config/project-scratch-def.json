@@ -1,6 +1,7 @@
 {
   "orgName": "nyantsarajaonarison company",
   "edition": "Developer",
+  "hasSampleData": true,
   "features": [],
   "settings": {
     "lightningExperienceSettings": {
